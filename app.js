@@ -43,6 +43,16 @@ app.get('/users', function (req, res) {
   })
 })
 
+app.get('/tickets', function (req, res) {
+  conn.query('SELECT * FROM users', function (err, rows) {
+    if (err) {
+      throw err;
+    } else {
+      res.json(rows);
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log(`the app is running on ${port}`);
 });

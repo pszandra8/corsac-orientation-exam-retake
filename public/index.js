@@ -12,10 +12,16 @@ const mainPaigeRenderer = function(method, query) {
   httpRequest.onreadystatechange = function() {
     if (httpRequest.readyState === httpRequest.DONE && httpRequest.status === 200) {
       let response = JSON.parse(httpRequest.responseText);
+      dropDownReset();
       response.forEach(element => dropDownCreator(element));
       }
   }
   httpRequest.send();
+}
+
+const dropDownReset = function() {
+  const userNameField = document.querySelector('.name');
+  userNameField.innerHTML = '';
 }
 
 const dropDownCreator = function(element) {
