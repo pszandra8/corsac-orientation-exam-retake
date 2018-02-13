@@ -1,0 +1,23 @@
+{
+  "name": "corsac-orientation-exam-retake",
+  "version": "1.0.0",
+  "description": "The programmer's most important equipment is his/her laptop and Murphy's law says \"Anything that can go wrong will go wrong\". We have to maintain our computer, and sometimes external help needed to fix a problem. Let's create an error ticket system to help ourself.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pszandra8/corsac-orientation-exam-retake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pszandra8/corsac-orientation-exam-retake/issues"
+  },
+  "homepage": "https://github.com/pszandra8/corsac-orientation-exam-retake#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
+}
