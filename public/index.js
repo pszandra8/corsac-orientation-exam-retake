@@ -49,7 +49,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
   };
 
   let httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST', `http://localhost:8080/tickets?reporter=${optionSelect}&manufacturer=${manufacturer}&serial_number=${serial_number}&description=${description}`);
+  httpRequest.open('POST', `http://localhost:8080/tickets?reporter=${optionSelect.id}&manufacturer=${manufacturerInput.value}&serial_number=${serialNumberInput.value}&description=${descriptionInput.value}`);
   httpRequest.setRequestHeader('Accept', '*');
   httpRequest.setRequestHeader('Content-type', 'application/json');
   httpRequest.onreadystatechange = function() {
