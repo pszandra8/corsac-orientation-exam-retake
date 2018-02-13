@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
   mainPaigeRenderer('GET', '/tickets');
 })
 
-const mainPaigeRenderer = function(method, query) {
+const mainPaigeRenderer = function(method, query, event) {
   let httpRequest = new XMLHttpRequest();
   httpRequest.open(method, `http://localhost:8080${query}`);
   httpRequest.onreadystatechange = function() {

@@ -44,13 +44,31 @@ app.get('/users', function (req, res) {
 })
 
 app.get('/tickets', function (req, res) {
-  conn.query('SELECT * FROM tickets', function (err, rows) {
-    if (err) {
-      throw err;
-    } else {
-      res.json(rows);
-    }
-  })
+  if (req.query.manufacturer) {
+    conn.query(`SELECT * FROM tickets WHERE manufacturer LIKE '${req.query.manufacturer}%'`, function (err, rows) {
+      if (err) {
+        throw err;
+      } else {
+        res.json(rows);
+      }
+    })
+  } else if (req.query.reporter) {
+    conn.query('SELECT * FROM tickets WHERE reporter=?', [req.query.reporter], function (err, rows) {
+      if (err) {
+        throw err;
+      } else {
+        res.json(rows);
+      }
+    })
+  } else {
+    conn.query('SELECT * FROM tickets', function (err, rows) {
+      if (err) {
+        throw err;
+      } else {
+        res.json(rows);
+      }
+    })
+  }
 })
 
 app.post('/tickets', function (req, res) {
