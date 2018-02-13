@@ -187,5 +187,14 @@ Example query:
 ## 2) Question time
 
 ### a, What's the difference between Array.prototype.forEach and Array.prototype.map?
+The biggest and most significant difference is that foreach() alters the array that it's called on, map() returns a new array with the elements.
 
 ### b, Write an example usage of the map and forEach function.
+
+Map
+
+For example when we have a list of numbers and we would like to make all of them doubled and save them in a new array, then we could do the following:
+
+let doubled = [1,2,3,4].map(function(num){
+  return 2* num;
+});
