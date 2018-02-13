@@ -76,6 +76,7 @@ const deleteTicket = function (event) {
 
   httpRequest.open('DELETE', `http://localhost:8080/tickets/${event.target.id}`);
   httpRequest.setRequestHeader('Accept', '*');
+  httpRequest.setRequestHeader('Content-type', 'Voala');
   httpRequest.setRequestHeader('Content-type', 'application/json');
 
   httpRequest.onreadystatechange = function() {

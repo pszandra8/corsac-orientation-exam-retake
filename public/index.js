@@ -28,20 +28,21 @@ const dropDownCreator = function(element) {
   const userNameField = document.querySelector('.name');
   let option = document.createElement('option');
   option.textContent = element.name;
-  option.setAttribute('id', element.id)
+  userNameField.setAttribute('id', element.id)
   userNameField.appendChild(option);
 }
 
 const manufacturerInput = document.querySelector('#manufacturer');
 const serialNumberInput = document.querySelector('#serial');
 const descriptionInput = document.querySelector('#description');
-let optionSelect = document.querySelector('.name');
-let date = new Date();
+// let date = new Date();
+let date = '2018-02-13';
 
-document.querySelector('.report').addEventListener('click', function (event) {
+document.querySelector('form').addEventListener('submit', function (event) {
   event.preventDefault();
+  let optionSelect = event.target.elements.namedItem('name');
   const post = {
-    reporter: name.id,
+    reporter: optionSelect.id,
     manufacturer: manufacturerInput.value,
     serial_number: serialNumberInput.value,
     description: descriptionInput.value,

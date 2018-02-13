@@ -54,7 +54,6 @@ app.get('/tickets', function (req, res) {
 })
 
 app.post('/tickets', function (req, res) {
-  console.log(req.body);
   conn.query(`INSERT INTO tickets SET ?`, [req.body], function (err, packet) {
     if (err) {
       res.sendStatus(500);
@@ -70,6 +69,7 @@ app.delete('/tickets/:id', function (req, res) {
   conn.query(`DELETE FROM tickets WHERE id=?;`, [req.params.id], function (err, packet) {
     if (err) {
       throw err;
+      res.sendStatus(500);
     } else {
       res.sendStatus(204);
     }
