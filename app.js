@@ -53,6 +53,29 @@ app.get('/tickets', function (req, res) {
   })
 })
 
+app.post('/tickets', function (req, res) {
+  console.log(req.body);
+  conn.query(`INSERT INTO tickets SET ?`, [req.body], function (err, packet) {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.json(packet);
+      console.log('Successful insert')
+    }
+  })
+})
+
+app.delete('/tickets/:id', function (req, res) {
+  conn.query(`DELETE FROM tickets WHERE id=?;`, [req.params.id], function (err, packet) {
+    if (err) {
+      throw err;
+    } else {
+      res.sendStatus(204);
+    }
+  }) 
+})
+
 app.listen(port, () => {
   console.log(`the app is running on ${port}`);
 });

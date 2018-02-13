@@ -1,3 +1,15 @@
 p {
   display: inline-block;
 }
+
+table {
+  border: double 1px black;
+}
+
+th, td {
+  border: double 1px black;
+}
+
+button {
+  margin: 3px;
+}

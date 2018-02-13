@@ -23,7 +23,7 @@ function createThead(){
   table.innerHTML = '';
   let thead = document.createElement('thead');
   table.appendChild(thead);
-  for (let i = 0; i <= 7; i++) {
+  for (let i = 0; i < 7; i++) {
     let headField = document.createElement('th');
     let headFieldContent = ['ID', 'Reporter', 'Manufacturer', 'Serial number', 'Description', 'Date', 'Actions'];
     headField.textContent = headFieldContent[i];
@@ -62,7 +62,26 @@ const createTBody = function(element) {
   date.textContent = element.reported_at;
   trow.appendChild(date);
 
+  const btnContainer = document.createElement('td');
+  trow.appendChild(btnContainer);
   const actions = document.createElement('button');
+  actions.setAttribute('id', element.id);
   actions.textContent = 'Delete';
-  trow.appendChild(actions);
+  btnContainer.appendChild(actions);
+  actions.addEventListener('click', deleteTicket);
+}
+
+const deleteTicket = function (event) {
+  let httpRequest = new XMLHttpRequest();
+
+  httpRequest.open('DELETE', `http://localhost:8080/tickets/${event.target.id}`);
+  httpRequest.setRequestHeader('Accept', '*');
+  httpRequest.setRequestHeader('Content-type', 'application/json');
+
+  httpRequest.onreadystatechange = function() {
+    if (httpRequest.readyState === httpRequest.DONE && httpRequest.status === 204) {
+      mainPaigeRenderer('GET', '/tickets');
+  }
+  }
+  httpRequest.send();
 }
