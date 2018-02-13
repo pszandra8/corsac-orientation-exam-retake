@@ -46,19 +46,37 @@ app.get('/users', function (req, res) {
 app.get('/tickets', function (req, res) {
   if (req.query.manufacturer) {
     conn.query(`SELECT * FROM tickets WHERE manufacturer LIKE '${req.query.manufacturer}%'`, function (err, rows) {
+      conn.query(`SELECT name FROM users WHERE id='${rows[0].id}'`, function (err, reporterName) {
       if (err) {
         throw err;
       } else {
-        res.json(rows);
+        res.json({
+          id: rows[0].id,
+          reporter: reporterName[0].name,
+          manufacturer: rows[0].manufacturer,
+          serial_number: rows[0].serial_number,
+          description: rows[0].description,
+          reported_at: rows[0].reported_at
+        });
       }
     })
+  })
   } else if (req.query.reporter) {
-    conn.query('SELECT * FROM tickets WHERE reporter=?', [req.query.reporter], function (err, rows) {
-      if (err) {
-        throw err;
-      } else {
-        res.json(rows);
-      }
+    conn.query('SELECT name from users WHERE id=?', [req.query.reporter], function (err, reporterName) {
+      conn.query('SELECT * FROM tickets WHERE reporter=?', [req.query.reporter], function (err, rows) {
+        if (err) {
+          throw err;
+        } else {
+          res.json({
+            id: rows[0].id,
+            reporter: reporterName[0].name,
+            manufacturer: rows[0].manufacturer,
+            serial_number: rows[0].serial_number,
+            description: rows[0].description,
+            reported_at: rows[0].reported_at
+          });
+        }
+      })
     })
   } else {
     conn.query('SELECT * FROM tickets', function (err, rows) {
