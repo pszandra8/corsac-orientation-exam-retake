@@ -90,7 +90,7 @@ app.get('/tickets', function (req, res) {
 })
 
 app.post('/tickets', function (req, res) {
-  if (req.query.manufacturer.length === 0 || req.query.serial_number === 0) {
+  if (req.query.reporter === NaN || req.query.manufacturer.length === 0 || req.query.serial_number.length === 0 || req.query.description.length === 0) {
     res.sendStatus(400);
   } else {
     conn.query(`INSERT INTO tickets SET ?`, [req.body], function (err, packet) {

@@ -49,7 +49,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
   };
 
   let httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST', `http://localhost:8080/tickets?manufacturer=${manufacturer}&serial_number=${serial_number}`);
+  httpRequest.open('POST', `http://localhost:8080/tickets?reporter=${optionSelect}&manufacturer=${manufacturer}&serial_number=${serial_number}&description=${description}`);
   httpRequest.setRequestHeader('Accept', '*');
   httpRequest.setRequestHeader('Content-type', 'application/json');
   httpRequest.onreadystatechange = function() {
