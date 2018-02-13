@@ -13,13 +13,13 @@ const mainPaigeRenderer = function(method, query) {
     if (httpRequest.readyState === httpRequest.DONE && httpRequest.status === 200) {
       let response = JSON.parse(httpRequest.responseText);
       response.forEach(element => dropDownCreator(element));
+      }
   }
   httpRequest.send();
 }
-}
-let userNameField = document.querySelector('.name');
+
 const dropDownCreator = function(element) {
-  userNameField.innerHTML = '';
+  const userNameField = document.querySelector('.name');
   let option = document.createElement('option');
   option.textContent = element.name;
   userNameField.appendChild(option);
