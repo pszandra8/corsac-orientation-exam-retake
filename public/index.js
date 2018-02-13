@@ -35,7 +35,6 @@ const dropDownCreator = function(element) {
 const manufacturerInput = document.querySelector('#manufacturer');
 const serialNumberInput = document.querySelector('#serial');
 const descriptionInput = document.querySelector('#description');
-// let date = new Date();
 let date = '2018-02-13';
 
 document.querySelector('form').addEventListener('submit', function (event) {
@@ -50,7 +49,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
   };
 
   let httpRequest = new XMLHttpRequest();
-  httpRequest.open('POST', 'http://localhost:8080/tickets');
+  httpRequest.open('POST', `http://localhost:8080/tickets?manufacturer=${manufacturer}&serial_number=${serial_number}`);
   httpRequest.setRequestHeader('Accept', '*');
   httpRequest.setRequestHeader('Content-type', 'application/json');
   httpRequest.onreadystatechange = function() {

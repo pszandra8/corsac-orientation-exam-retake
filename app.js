@@ -90,15 +90,19 @@ app.get('/tickets', function (req, res) {
 })
 
 app.post('/tickets', function (req, res) {
-  conn.query(`INSERT INTO tickets SET ?`, [req.body], function (err, packet) {
-    if (err) {
-      res.sendStatus(500);
-      throw err;
-    } else {
-      res.json(packet);
-      console.log('Successful insert')
-    }
-  })
+  if (req.query.manufacturer.length === 0 || req.query.serial_number === 0) {
+    res.sendStatus(400);
+  } else {
+    conn.query(`INSERT INTO tickets SET ?`, [req.body], function (err, packet) {
+      if (err) {
+        res.sendStatus(500);
+        throw err;
+      } else {
+        res.json(packet);
+        console.log('Successful insert')
+      }
+    })
+  }
 })
 
 app.delete('/tickets/:id', function (req, res) {
