@@ -44,7 +44,7 @@ app.get('/users', function (req, res) {
 })
 
 app.get('/tickets', function (req, res) {
-  conn.query('SELECT * FROM users', function (err, rows) {
+  conn.query('SELECT * FROM tickets', function (err, rows) {
     if (err) {
       throw err;
     } else {
